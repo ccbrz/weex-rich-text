@@ -10,6 +10,7 @@
     <component name="bmspan">com.eros.framework.extend.comoponents.BMSpan</component>
     <component name="bmcalendar">com.eros.framework.extend.comoponents.BMCalendar</component>
     <component name="bmchart">com.eros.framework.extend.comoponents.BMChart</component>
+    <component name="eewebview">com.eros.framework.extend.comoponents.eewebview.EEWebView</component>
 
     <!--weex-module-->
     <module name="bmRouter">com.eros.framework.extend.module.RouterModule</module>

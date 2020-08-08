@@ -58,7 +58,7 @@ dependencies {
         exclude group: 'com.android.support'
     })
     compile project(':nexus')
-
+    compile "com.google.code.gson:gson:2.8.5"
 
 //    debugImplementation "com.squareup.leakcanary:leakcanary-android:1.5.4"
 //    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.5.4"
