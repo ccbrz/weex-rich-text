@@ -11,6 +11,7 @@
     <component name="bmcalendar">com.eros.framework.extend.comoponents.BMCalendar</component>
     <component name="bmchart">com.eros.framework.extend.comoponents.BMChart</component>
     <component name="eewebview">com.eros.framework.extend.comoponents.eewebview.EEWebView</component>
+    <component name="cc-rich-text">com.eros.framework.extend.comoponents.richtext.RRichTextComponent</component>
 
     <!--weex-module-->
     <module name="bmRouter">com.eros.framework.extend.module.RouterModule</module>

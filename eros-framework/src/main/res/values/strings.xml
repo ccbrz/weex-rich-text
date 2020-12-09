@@ -1,3 +1,13 @@
 <resources>
+    <string name="dialog_title_text_color">选择字体颜色</string>
+    <string name="dialog_title_text_back_color">选择字体背景颜色</string>
+    <string name="title_insert_link">插入链接</string>
+    <string name="hint_text_to_display">标题</string>
+    <string name="hint_link_to">链接地址</string>
+    <string name="insert">插入</string>
 
+    <!-- Insert Table -->
+    <string name="title_insert_table">插入表格</string>
+    <string name="hint_no_of_columns">列数</string>
+    <string name="hint_no_of_rows">行数</string>
 </resources>
