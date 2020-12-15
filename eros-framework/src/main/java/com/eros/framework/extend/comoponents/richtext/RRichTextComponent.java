@@ -2,6 +2,7 @@ package com.eros.framework.extend.comoponents.richtext;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -18,7 +19,6 @@ import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.annotation.JSMethod;
 import com.taobao.weex.dom.WXDomObject;
 import com.taobao.weex.ui.component.WXComponent;
-import com.taobao.weex.ui.component.WXComponentProp;
 import com.taobao.weex.ui.component.WXVContainer;
 
 import java.util.HashMap;
@@ -26,7 +26,7 @@ import java.util.Locale;
 import java.util.Map;
 
 
-public class RRichTextComponent extends WXComponent<RTextEditorView> implements InsertLinkDialogFragment.OnInsertClickListener, InsertTableDialogFragment.OnInsertClickListener, ColorPickerDialogListener {
+public class RRichTextComponent extends WXComponent<RTextEditorView> implements InsertLinkDialogFragment.OnInsertClickListener, InsertTableDialogFragment.OnInsertClickListener, ColorPickerDialogListener, RTextEditorView.OnTextChangeListener {
     private static final int DIALOG_TEXT_FORE_COLOR_ID = 0;
     private static final int DIALOG_TEXT_BACK_COLOR_ID = 1;
     private static final String SELECT_TYPE_FOREGROUND = "textForeground";
@@ -56,13 +56,14 @@ public class RRichTextComponent extends WXComponent<RTextEditorView> implements 
     protected RTextEditorView initComponentHostView(@NonNull Context context) {
         mView = new RTextEditorView(context);
         mView.setIncognitoModeEnabled(true);
+        mView.setOnTextChangeListener(this);
         return mView;
     }
 
-    @WXComponentProp(name = "html")
-    public void setHtml(String html) {
+    @JSMethod(uiThread = true)
+    public void setRichContent(String content) {
         if (mView != null) {
-            mView.setHtml(html);
+            mView.setHtml(content);
         }
     }
 
@@ -364,6 +365,19 @@ public class RRichTextComponent extends WXComponent<RTextEditorView> implements 
     @Override
     public void onDialogDismissed(int dialogId) {
 
+    }
+
+    @Override
+    public void onTextChanged(final String content) {
+        getInstance().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Map<String, Object> param = new HashMap<String, Object>();
+                param.put("timeStamp", SystemClock.elapsedRealtime());
+                param.put("content", content);
+                fireEvent("onRichContentChange", param);
+            }
+        });
     }
 
     enum TextSize {

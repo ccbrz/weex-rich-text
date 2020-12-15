@@ -30,6 +30,7 @@ public class RTextEditorView extends WebView {
     private boolean isIncognitoModeEnabled;
     private String content;
     private OnTextChangeListener onTextChangeListener;
+    private boolean mFirst = true;
 
     public interface OnTextChangeListener {
         void onTextChanged(String content);
@@ -95,6 +96,10 @@ public class RTextEditorView extends WebView {
     @JavascriptInterface
     public void onEditorContentChanged(String content) {
         if (onTextChangeListener != null) {
+            if (mFirst) {
+                mFirst = false;
+                return;
+            }
             onTextChangeListener.onTextChanged(content);
         }
         this.content = content;
